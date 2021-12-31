@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Formulario from "./components/FormularioNotas";
+import ListaDeNotas from "./components/ListaDeNotas";
+import "./App.css";
 
 function App() {
+
+  const [notas, setNotas] = useState([])  
+
+  function criarNota (titulo, desc){
+    const novaNota = {titulo,desc}
+    const nota = [...notas, novaNota]
+    setNotas(nota)
+    console.log(notas)
+    return
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section>
+      <Formulario criarNota={criarNota}/>
+      <ListaDeNotas nota={notas} />
+    </section>
   );
 }
-
 export default App;
